@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import Two from "./Two";
-import { createWidget } from "../redux/actions/widgetActions";
+import {
+  createWidget,
+  otherAction,
+  otherAction3,
+} from "../redux/actions/widgetActions";
 import { connect } from "react-redux";
+
+class SomeComponent extends React.Component {
+  render() {
+    return <h1>Hello</h1>;
+  }
+}
 
 function One(props) {
   const [newWidget, setNewWidget] = useState("");
@@ -23,9 +33,12 @@ function One(props) {
         />
         <input type="submit" value="Create" />
       </form>
+      <h2>Widet Prop is equal to {props.widget.name}</h2>
       <Two />
     </div>
   );
 }
+
+// const ConnectedOneComponent = connect(null, { createWidget, otherAction, otherAction3 })(One)
 
 export default connect(null, { createWidget })(One);
