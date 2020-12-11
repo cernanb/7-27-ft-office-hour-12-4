@@ -28,14 +28,19 @@ class Three extends React.Component {
         {this.props.githubUsers.map((user) => {
           return <div>{user.login}</div>;
         })}
+        Cumulative Followers: {this.props.cumulativeFollowers}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
+  const followerNum = state.github.users.reduce(function (accum, user) {
+    return user.followers + accum;
+  }, 0);
   return {
     githubUsers: state.github.users,
+    cumulativeFollowers: followerNum,
   };
 };
 
